@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,5 +23,5 @@ public class User {
 
 
     @Transient
-    private List<Rating> ratings;
+    private List<Rating> ratings = new ArrayList<>();
 }
