@@ -21,7 +21,7 @@ public class RatingService {
         return ratingRepository.findAll();
     }
 
-    public List<Rating> getRatingUserId(String userId) {
+    public List<Rating> getRatingUserId(Integer userId) {
         return ratingRepository.findByUserId(userId);
 
     }
