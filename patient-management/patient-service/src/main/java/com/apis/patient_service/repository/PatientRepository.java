@@ -1,4 +1,11 @@
-//package com.apis.patient_service.repository;
-//
-//public interface PatientRepository extends  {
-//}
+package com.apis.patient_service.repository;
+
+import com.apis.patient_service.model.Patient;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.UUID;
+
+@Repository
+public interface PatientRepository extends JpaRepository<Patient, UUID> {
+}
