@@ -18,3 +18,5 @@ public class GlobalExceptionHandler {
 
     }
 }
+// This is a global exception handler
+// here is the code where we manage all the exceptions
