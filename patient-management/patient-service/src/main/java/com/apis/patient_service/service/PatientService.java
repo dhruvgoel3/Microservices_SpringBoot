@@ -35,21 +35,23 @@ public class PatientService {
         return PatientMapper.toDto(patient);
     }
 
-    public PatientResponseDto updatePatient(UUID id , PatientRequestDto patientRequestDto)
-    {
-       Patient patient =  patientRepository.findById(id).orElseThrow(()-> new PatientNotFoundException("Patient not found with Id: " + id));
-       if(patientRepository.existsByEmail(patientRequestDto.getEmail()))
-       {
-           throw new EmailAlreadyExistsException(
-                   "A patient with this email " + " already exists" + patientRequestDto.getEmail());
-       }
+    public PatientResponseDto updatePatient(UUID id, PatientRequestDto patientRequestDto) {
+        Patient patient = patientRepository.findById(id).orElseThrow(() -> new PatientNotFoundException("Patient not found with Id: " + id));
+        if (patientRepository.existsByEmail(patientRequestDto.getEmail())) {
+            throw new EmailAlreadyExistsException(
+                    "A patient with this email " + " already exists" + patientRequestDto.getEmail());
+        }
 
-       patient.setName(patientRequestDto.getName());
-       patient.setAddress(patientRequestDto.getAddress());
-       patient.setEmail(patientRequestDto.getEmail());
-       patient.setDateOfBirth(patientRequestDto.getDateOfBirth());
+        patient.setName(patientRequestDto.getName());
+        patient.setAddress(patientRequestDto.getAddress());
+        patient.setEmail(patientRequestDto.getEmail());
+        patient.setDateOfBirth(patientRequestDto.getDateOfBirth());
 
-       Patient updatePatient = patientRepository.save(patient);
-       return PatientMapper.toDto(updatePatient);
+        Patient updatePatient = patientRepository.save(patient);
+        return PatientMapper.toDto(updatePatient);
+    }
+
+    public void deletePatient(UUID id) {
+        patientRepository.deleteById(id);
     }
 }

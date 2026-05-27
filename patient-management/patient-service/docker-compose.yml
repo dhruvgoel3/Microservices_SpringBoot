@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+
+  patient-service:
+    build: .
+    container_name: patient-service
+
+    ports:
+        - "9191:8080"
+
+    depends_on:
+      - mysql-db
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/springbootdb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: password
+
+  mysql-db:
+    image: mysql:8
+    container_name: mysql-db
+
+    ports:
+      - "3307:3306"
+
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: springbootdb
+
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
